@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uriMap:MappingContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:uriMap="http:///www.eclipse.org/m2m/qvt/oml/MModelUriMap/1.0.0">
+  <mapping sourceURI="http://petrinet/1.0" targetURI="platform:/resource/AD2PetriNet-QVTO/PetriNet.ecore"/>
+  <mapping sourceURI="http://activitydiagram/1.0" targetURI="platform:/resource/AD2PetriNet-QVTO/transforms/ActivityDiagram.ecore"/>
+</uriMap:MappingContainer>

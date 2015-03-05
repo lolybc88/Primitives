@@ -1,0 +1,59 @@
+modeltype CLAZZ  uses classmm('http://classmm');	
+
+transformation Identity(in clazz : CLAZZ, out CLAZZ);
+
+
+main() {
+	clazz.objects()[CLAZZ::Package]-> map pk2pk();
+	clazz.objects()[CLAZZ::Class]-> map cl2cl();
+	clazz.objects()[CLAZZ::Attribute]-> map at2at();
+	clazz.objects()[CLAZZ::Method]-> map mt2mt();
+	clazz.objects()[CLAZZ::Parameter]-> map par2par();
+	clazz.objects()[CLAZZ::DataType]-> map dt2dt();
+}
+
+mapping CLAZZ::Package::pk2pk() :  CLAZZ::Package
+{
+	name := self.name;
+	classes := self.classes;
+}
+
+mapping CLAZZ::Class::cl2cl() :  CLAZZ::Class
+{
+	name := self.name;
+	isAbstract := self.isAbstract;
+	visibility := self.visibility;
+	package := self.package;
+	super := self.super;
+	att := self.att;
+	methods := self.methods;
+}
+
+mapping CLAZZ::Attribute::at2at() :  CLAZZ::Attribute
+{
+	name := self.name;
+	multivalued:= self.multivalued;
+	owner := self.owner;
+	type:= self.type;
+	visibility := self.visibility;
+}
+
+
+mapping CLAZZ::Method::mt2mt() :  CLAZZ::Method
+{
+	name := self.name;
+	owner := self.owner;
+	params := self.params;
+}
+
+mapping CLAZZ::Parameter::par2par() :  CLAZZ::Parameter
+{
+	name := self.name;
+	owner := self.owner;
+	type := self.type;
+}
+
+mapping CLAZZ::DataType::dt2dt() :  CLAZZ::DataType
+{
+	name := self.name;
+}

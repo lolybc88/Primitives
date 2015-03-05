@@ -1,0 +1,189 @@
+-- @path MM=/AD2PetriNet/ActivityDiagram.ecore
+-- @path MM1=/AD2PetriNet/PetriNet.ecore
+
+module AD2PetriNet;
+create OUT: MM1 from IN: MM;
+
+helper def: petriNet: MM1!PetriNet = OclUndefined; -- global variable
+-- helper def: counter : Integer = 0;
+
+-- All the imperative blocks can be implemented with helpers or included in the to part
+-- except when they involve a global variable (declared as a helper as before).
+-- This is the only thing we need to take into account to cover with our primitives all
+-- the ATL functionality!!!!!
+
+helper def: numElems(net : MM1!PetriNet) : Integer = net.arcs.size() + net.places.size() + net.transitions.size(); 
+
+entrypoint rule first() {
+	to
+		petriN: MM1!PetriNet (
+			name <- 'PetriNet'		
+		)
+	do {
+		thisModule.petriNet <- petriN;
+	}
+}
+
+rule ActionNodeMapping {
+	from
+		an: MM!ActionNode
+	to
+		entry: MM1!Transition (
+			name <- an.name + '-actionEntry',
+			net <- thisModule.petriNet
+		),
+		arc1: MM1!Arc (
+			transition <- entry,
+			place <- place,
+			toPlace <- true,
+			net <- thisModule.petriNet
+		),
+		place: MM1!Place (
+			name <- an.name,
+			net <- thisModule.petriNet
+		),
+		arc2: MM1!Arc (
+			place <- place,
+			transition <- exit,
+			toPlace <- false,
+			net <- thisModule.petriNet
+		),
+		exit: MM1!Transition (
+			name <- an.name + '-actionExit',
+			net <- thisModule.petriNet
+		)
+}
+
+rule InitialNodeMapping {
+	from
+		ini: MM!InitialNode
+	to
+		place: MM1!Place (
+			token <- 1,
+			name <- ini.name,
+			net <- thisModule.petriNet
+		),
+		arc: MM1!Arc (
+			place <- place,
+			transition <- exit,
+			toPlace <- false,
+			net <- thisModule.petriNet
+		),
+		exit: MM1!Transition (
+			name <- ini.name + '-initial',
+			net <- thisModule.petriNet
+		)
+}
+
+rule ActivityFinalMapping {
+	from
+		final: MM!ActivityFinalNode
+	to
+		entry: MM1!Transition (
+			name <- final.name + '-activityFinal',
+			net <- thisModule.petriNet
+		),
+		arc: MM1!Arc (
+			transition <- entry,
+			place <- place,
+			toPlace <- true,
+			net <- thisModule.petriNet
+		),
+		place: MM1!Place (
+			name <- final.name,
+			net <- thisModule.petriNet
+		)
+}
+
+rule SignalMapping {
+	from
+		final: MM!SignalNode
+	to
+		entry: MM1!Transition (
+			name <- final.name + '-signal',
+			net <- thisModule.petriNet
+		),
+		arc: MM1!Arc (
+			transition <- entry,
+			place <- place,
+			toPlace <- true,
+			net <- thisModule.petriNet
+		),
+		place: MM1!Place (
+			name <- final.name,
+			net <- thisModule.petriNet
+		)
+}
+
+rule AcceptSignalMapping {
+	from
+		final: MM!AcceptSignalNode
+	to
+		place: MM1!Place (
+			name <- final.name,
+			net <- thisModule.petriNet
+		),
+		arc: MM1!Arc (
+			transition <- exit,
+			place <- place,
+			toPlace <- false,
+			net <- thisModule.petriNet
+		),
+		exit: MM1!Transition (
+			name <- final.name + '-acceptSignal',
+			net <- thisModule.petriNet
+		)
+}
+
+rule ActivityEdgeMapping {
+	from
+		edge: MM!ActivityEdge
+	to
+		arc1: MM1!Arc (
+			transition <- thisModule.resolveTemp(edge.source, 'exit'),
+			place <- place,
+			toPlace <- true,
+			net <- thisModule.petriNet
+		),
+		place: MM1!Place (
+			name <- edge.name,
+			net <- thisModule.petriNet
+		),
+		arc2: MM1!Arc (
+			place <- place,
+			transition <- thisModule.resolveTemp(edge.target, 'entry'),
+			toPlace <- false,
+			net <- thisModule.petriNet
+		)
+}
+
+rule MatchSignals {
+	from
+		signal: MM!SignalNode,
+		acceptSignal: MM!AcceptSignalNode (
+				signal.activityDiag = acceptSignal. activityDiag and
+				signal.signalId = acceptSignal.signalId)
+	to
+		arc1: MM1!Arc (
+			place <- thisModule.resolveTemp(signal, 'place'),
+			transition <- trans,
+			toPlace <- false,
+			net <- thisModule.petriNet
+		),
+		trans: MM1!Transition (
+			name <- signal.name + '-' + acceptSignal.name,
+			net <- thisModule.petriNet
+		),
+		arc2: MM1!Arc (
+			transition <- trans,
+			place <- thisModule.resolveTemp(acceptSignal, 'place'),
+			toPlace <- true,
+			net <- thisModule.petriNet
+		)
+}
+
+endpoint rule Last() {
+	do {
+		thisModule.petriNet.name <- thisModule.petriNet.name + '-' + thisModule.numElems(thisModule.petriNet) ;
+	}
+}

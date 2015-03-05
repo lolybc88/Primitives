@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="ASCII"?>
+<mapping:MappingModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mapping/1.0">
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="A2A_Mapping"/>
+    <right name="R2R_Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="R2R_Mapping"/>
+    <right name="MappingModel"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="A2A_Mapping"/>
+    <right name="A2A_Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="C2C_Mapping"/>
+    <right name="Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="ProxyElement"/>
+    <right name="A2A_Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="R2R_Mapping"/>
+    <right name="R2R_Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="ProxyElement"/>
+    <right name="ProxyElement"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="R2R_Mapping"/>
+    <right name="A2A_Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="Mapping"/>
+    <right name="ProxyElement"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="A2A_Mapping"/>
+    <right name="MappingModel"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="C2C_Mapping"/>
+    <right name="MappingModel"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="Mapping"/>
+    <right name="MappingModel"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="MappingModel"/>
+    <right name="Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="C2C_Mapping"/>
+    <right name="ProxyElement"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="A2A_Mapping"/>
+    <right name="C2C_Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="MappingModel"/>
+    <right name="A2A_Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="Mapping"/>
+    <right name="A2A_Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="Mapping"/>
+    <right name="Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="C2C_Mapping"/>
+    <right name="A2A_Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="MappingModel"/>
+    <right name="R2R_Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="R2R_Mapping"/>
+    <right name="Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="Mapping"/>
+    <right name="C2C_Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="MappingModel"/>
+    <right name="C2C_Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="ProxyElement"/>
+    <right name="C2C_Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="C2C_Mapping"/>
+    <right name="C2C_Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="C2C_Mapping"/>
+    <right name="R2R_Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="R2R_Mapping"/>
+    <right name="C2C_Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="ProxyElement"/>
+    <right name="MappingModel"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="ProxyElement"/>
+    <right name="Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="R2R_Mapping"/>
+    <right name="ProxyElement"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="Mapping"/>
+    <right name="R2R_Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="A2A_Mapping"/>
+    <right name="Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="ProxyElement"/>
+    <right name="R2R_Mapping"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="MappingModel"/>
+    <right name="ProxyElement"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="MappingModel"/>
+    <right name="MappingModel"/>
+  </mappings>
+  <mappings xsi:type="mapping:C2C_Mapping">
+    <left name="A2A_Mapping"/>
+    <right name="ProxyElement"/>
+  </mappings>
+  <mappings xsi:type="mapping:A2A_Mapping">
+    <left name="name"/>
+    <right name="name"/>
+  </mappings>
+  <mappings xsi:type="mapping:R2R_Mapping">
+    <left name="mappingModel"/>
+    <right name="mappingModel"/>
+  </mappings>
+  <mappings xsi:type="mapping:R2R_Mapping">
+    <left name="right"/>
+    <right name="mappingModel"/>
+  </mappings>
+  <mappings xsi:type="mapping:R2R_Mapping">
+    <left name="left"/>
+    <right name="mappings"/>
+  </mappings>
+  <mappings xsi:type="mapping:R2R_Mapping">
+    <left name="mappingModel"/>
+    <right name="left"/>
+  </mappings>
+  <mappings xsi:type="mapping:R2R_Mapping">
+    <left name="mappings"/>
+    <right name="right"/>
+  </mappings>
+  <mappings xsi:type="mapping:R2R_Mapping">
+    <left name="left"/>
+    <right name="right"/>
+  </mappings>
+  <mappings xsi:type="mapping:R2R_Mapping">
+    <left name="left"/>
+    <right name="left"/>
+  </mappings>
+  <mappings xsi:type="mapping:R2R_Mapping">
+    <left name="right"/>
+    <right name="left"/>
+  </mappings>
+  <mappings xsi:type="mapping:R2R_Mapping">
+    <left name="left"/>
+    <right name="mappingModel"/>
+  </mappings>
+  <mappings xsi:type="mapping:R2R_Mapping">
+    <left name="mappingModel"/>
+    <right name="right"/>
+  </mappings>
+  <mappings xsi:type="mapping:R2R_Mapping">
+    <left name="mappings"/>
+    <right name="mappings"/>
+  </mappings>
+  <mappings xsi:type="mapping:R2R_Mapping">
+    <left name="mappings"/>
+    <right name="left"/>
+  </mappings>
+  <mappings xsi:type="mapping:R2R_Mapping">
+    <left name="mappingModel"/>
+    <right name="mappings"/>
+  </mappings>
+  <mappings xsi:type="mapping:R2R_Mapping">
+    <left name="right"/>
+    <right name="right"/>
+  </mappings>
+  <mappings xsi:type="mapping:R2R_Mapping">
+    <left name="mappings"/>
+    <right name="mappingModel"/>
+  </mappings>
+  <mappings xsi:type="mapping:R2R_Mapping">
+    <left name="right"/>
+    <right name="mappings"/>
+  </mappings>
+</mapping:MappingModel>

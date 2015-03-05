@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<classmm:Package xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:classmm="http://classmm" name="p1">
+  <classes name="c1">
+    <att/>
+    <methods>
+      <params/>
+    </methods>
+  </classes>
+  <classes name="c2"/>
+  <classes/>
+</classmm:Package>

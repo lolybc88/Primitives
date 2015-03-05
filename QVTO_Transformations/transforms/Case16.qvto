@@ -1,0 +1,14 @@
+modeltype Clazz  uses classmm('http://classmm');
+modeltype Rel uses relationalmm('http://relationalmm');	
+
+transformation Case15(in clazz : Clazz, out Rel);
+
+
+main() {
+	clazz.objects()[Clazz::Class] -> product(clazz.objects()[Clazz::Attribute]) -> forEach (x){map AtoB(x.first,x.second)};
+}
+
+mapping AtoB(in a : Clazz::Class, in b : Clazz::Attribute) : t : Rel::Table, c : Rel::Column  when { a.att->includes(b) } {
+	object t : Rel::Table { name := c.name; };
+	object c : Rel::Column { name := a.name + "-" + b.name; };
+}

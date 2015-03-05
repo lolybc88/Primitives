@@ -1,0 +1,13 @@
+modeltype Clazz  uses classmm('http://classmm');
+modeltype Rel uses relationalmm('http://relationalmm');	
+
+transformation Case13(in clazz : Clazz, out Rel);
+
+
+main() {
+	clazz.objects()[Clazz::Class] ->product(clazz.objects()[Clazz::Attribute]) -> forEach (x){map AtoB(x.first,x.second)};
+}
+
+mapping AtoB(in a : Clazz::Class, in b : Clazz::Attribute) : Rel::Column when {not a.isAbstract} {
+	name := a.name + "-" + b.name 
+}

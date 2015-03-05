@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/example_language/src-gen" editDirectory="/example_language.edit/src"
+    editorDirectory="/example_language.editor/src" modelPluginID="example_language"
+    forceOverwrite="true" modelName="Language" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="example_language.edit"
+    editorPluginID="example_language.editor" runtimeVersion="2.10">
+  <genPackages prefix="Language" basePackage="example" disposableProviderFactory="true"
+      fileExtensions="mydsl" ecorePackage="Language.ecore#/">
+    <genClasses ecoreClass="Language.ecore#//Composer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Language.ecore#//Composer/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Language.ecore#//Composer/primitives"/>
+    </genClasses>
+    <genClasses ecoreClass="Language.ecore#//MTLPrimitive"/>
+    <genClasses ecoreClass="Language.ecore#//Creator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Language.ecore#//Creator/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Language.ecore#//Creator/features"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Language.ecore#//Creator/creatorName"/>
+    </genClasses>
+    <genClasses ecoreClass="Language.ecore#//Updater">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Language.ecore#//Updater/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Language.ecore#//Updater/features"/>
+    </genClasses>
+    <genClasses ecoreClass="Language.ecore#//FeatureAssigner">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Language.ecore#//FeatureAssigner/feature"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Language.ecore#//FeatureAssigner/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Language.ecore#//Declarer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Language.ecore#//Declarer/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Language.ecore#//Declarer/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Language.ecore#//Assigner">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Language.ecore#//Assigner/var"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Language.ecore#//Assigner/creator"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

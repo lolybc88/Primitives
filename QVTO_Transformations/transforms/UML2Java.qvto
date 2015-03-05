@@ -1,0 +1,50 @@
+modeltype Clazz  uses classmm('http://classmm');
+modeltype Core uses Core('org.amma.dsl.jdt.core');
+
+transformation Case0(in clazz : Clazz, out Core);
+
+main() {
+	clazz.objects()[Clazz::Package]-> map rule0();	
+	clazz.objects()[Clazz::Class]-> map rule1();
+	clazz.objects()[Clazz::Attribute]-> map rule2();
+	clazz.objects()[Clazz::Method]-> map rule3();
+	clazz.objects()[Clazz::Parameter]-> map rule4();
+}
+
+mapping Clazz::Package::rule0() :  Core::IPackageFragment
+{
+	compilationUnits := self.classes.late resolveIn(Clazz::Class::rule1, Core::ICompilationUnit);
+	elementName := self.name;
+	isDefaultPackage := false;
+}
+
+mapping Clazz::Class::rule1() :  cu : Core::ICompilationUnit, t : Core::IType
+{
+	object cu : Core::ICompilationUnit { 
+		elementName := self.name + ".java";
+		types := t; 
+	};
+	object t : Core::IType { 
+		elementName := self.name; 
+		fields := self.att.late resolveIn(Clazz::Attribute::rule2, Core::IField);
+		methods := self.methods.late resolveIn(Clazz::Method::rule3, Core::IMethod);	
+	};
+}
+
+mapping Clazz::Attribute::rule2() :  Core::IField
+{
+	elementName := self.name;
+	typeSignature := self.type.name;
+}
+
+mapping Clazz::Method::rule3() :  Core::IMethod
+{
+	elementName := self.name;
+	parameters := self.params.late resolveoneIn(Clazz::Parameter::rule4, Core::Parameter);
+}
+
+mapping Clazz::Parameter::rule4() :  Core::Parameter
+{
+	name := self.name;
+	type := self.type.name;
+}

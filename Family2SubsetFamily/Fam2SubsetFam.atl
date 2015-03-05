@@ -1,0 +1,31 @@
+-- @path MM=/ATLExample/Families.ecore
+-- @path MM1=/ATLExample/Families.ecore
+
+module Example;
+create OUT : MM1 from IN : MM;
+
+rule Family {
+   from
+      f1 : MM!Family (f1.daughters.size()=2 and f1.sons.size()=2)
+   to 
+      f2 : MM1!Family (
+      	  lastName <- f1.lastName,
+		  father <- thisModule.Member(f1.father),
+		  mother <- thisModule.Member(f1.mother),
+		  daughters <- f1.daughters->collect(e | thisModule.Member(e)),
+		  sons <- f1.sons->collect(e | thisModule.Member(e))
+      )
+}
+
+lazy rule Member {
+   from
+      m1 : MM!Member
+   to 
+      m2 : MM1!Member (
+      	firstName <- m1.firstName,
+		familyFather <- m1.familyFather,
+		familyMother <- m1.familyMother,
+		familySon <- m1.familySon,
+		familyDaughter <- m1.familyDaughter
+      ) 
+}

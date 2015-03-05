@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:petrinet="http://petrinet/1.0">
+  <petrinet:Transition name="in-signal"/>
+  <petrinet:Arc toPlace="true" transition="/0" place="/2"/>
+  <petrinet:Place name="in"/>
+  <petrinet:Place name="out"/>
+  <petrinet:Arc transition="/5" place="/3"/>
+  <petrinet:Transition name="out-acceptSignal"/>
+</xmi:XMI>

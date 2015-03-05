@@ -1,0 +1,31 @@
+modeltype Clazz  uses classmm('http://classmm');	
+modeltype Map uses _mapping('http://mapping/1.0');
+
+transformation Matching(in leftMM : Clazz, in rightMM : Clazz, out Map);
+
+main() {
+	leftMM.objects()[Clazz::Package]-> map pk2mo();
+	
+	leftMM.objects()[Clazz::Class] ->product(rightMM.objects()[Clazz::Class]) -> forEach (x){map AtoB(x.first,x.second)};
+	
+	leftMM.objects()[Clazz::Attribute] ->product(rightMM.objects()[Clazz::Attribute]) -> forEach (x){map AtoB2(x.first,x.second)};
+}
+
+mapping Clazz::Package::pk2mo() :  Map::MappingModel
+{}
+
+mapping AtoB(in a : Clazz::Class, in b : Clazz::Class) : m : Map::C2C_Mapping, p1 : Map::ProxyElement, p2 : Map::ProxyElement {
+	object m : Map::C2C_Mapping { mappingModel := a.container().resolveoneIn(Clazz::Package::pk2mo,  Map::MappingModel);
+								  left := p1;
+								  right := p2; };
+	object p1 : Map::ProxyElement { name := a.name; };
+	object p2 : Map::ProxyElement { name := b.name; };
+}
+
+mapping AtoB2(in a : Clazz::Attribute, in b : Clazz::Attribute) : m : Map::A2A_Mapping, p1 : Map::ProxyElement, p2 : Map::ProxyElement {
+	object m : Map::A2A_Mapping { mappingModel := a.container().container().resolveoneIn(Clazz::Package::pk2mo,  Map::MappingModel);
+								  left := p1;
+								  right := p2; };
+	object p1 : Map::ProxyElement { name := a.name; };
+	object p2 : Map::ProxyElement { name := b.name; };
+}

@@ -1,0 +1,138 @@
+-- @path MM=/AD2PetriNet/ActivityDiagram.ecore
+-- @path MM1=/AD2PetriNet/PetriNet.ecore
+
+module AD2PetriNet;
+create OUT: MM1 from IN: MM;
+
+rule ActionNodeMapping {
+	from
+		an: MM!ActionNode
+	to
+		entry: MM1!Transition (
+			name <- an.name + '-actionEntry'
+		),
+		arc1: MM1!Arc (
+			transition <- entry,
+			place <- place,
+			toPlace <- true
+		),
+		place: MM1!Place (
+			name <- an.name
+		),
+		arc2: MM1!Arc (
+			place <- place,
+			transition <- exit,
+			toPlace <- false
+		),
+		exit: MM1!Transition (
+			name <- an.name + '-actionExit'
+		)
+}
+
+rule InitialNodeMapping {
+	from
+		ini: MM!InitialNode
+	to
+		place: MM1!Place (
+			token <- 1,
+			name <- ini.name
+		),
+		arc: MM1!Arc (
+			place <- place,
+			transition <- exit,
+			toPlace <- false
+		),
+		exit: MM1!Transition (
+			name <- ini.name + '-initial'
+		)
+}
+
+rule ActivityFinalMapping {
+	from
+		final: MM!ActivityFinalNode
+	to
+		entry: MM1!Transition (
+			name <- final.name + '-activityFinal'
+		),
+		arc: MM1!Arc (
+			transition <- entry,
+			place <- place,
+			toPlace <- true
+		),
+		place: MM1!Place (
+			name <- final.name
+		)
+}
+
+rule SignalMapping {
+	from
+		final: MM!SignalNode
+	to
+		entry: MM1!Transition (
+			name <- final.name + '-signal'
+		),
+		arc: MM1!Arc (
+			transition <- entry,
+			place <- place,
+			toPlace <- true
+		),
+		place: MM1!Place (
+			name <- final.name
+		)
+}
+
+rule AcceptSignalMapping {
+	from
+		final: MM!AcceptSignalNode
+	to
+		place: MM1!Place (
+			name <- final.name
+		),
+		arc: MM1!Arc (
+			transition <- trans,
+			place <- place,
+			toPlace <- false
+		),
+		trans: MM1!Transition (
+			name <- final.name + '-acceptSignal'
+		)
+}
+
+rule ActivityEdgeMapping {
+	from
+		edge: MM!ActivityEdge
+	to
+		arc1: MM1!Arc (
+			transition <- thisModule.resolveTemp(edge.source, 'exit'),
+			place <- place,
+			toPlace <- true
+		),
+		place: MM1!Place (
+			name <- edge.name
+		),
+		arc2: MM1!Arc (
+			place <- place,
+			transition <- thisModule.resolveTemp(edge.target, 'entry'),
+			toPlace <- false
+		)
+}
+
+rule MatchSignals {
+	from
+		signal : MM!SignalNode,
+		acceptSignal : MM!AcceptSignalNode (signal.signalId = acceptSignal.signalId)
+	to 
+		arc1: MM1!Arc (
+			place <- thisModule.resolveTemp(signal, 'place'),
+			transition <- trans,
+			toPlace <- false
+		),
+		trans: MM1!Transition (
+			name <- signal.name + '-' + acceptSignal.name 
+		),
+		arc2: MM1!Arc (
+			transition <- trans,
+			place <- thisModule.resolveTemp(acceptSignal, 'place'),
+			toPlace <- true
+		)
+}

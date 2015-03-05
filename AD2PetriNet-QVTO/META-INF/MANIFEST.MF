@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: AD2PetriNet_QVTO Plug-in
+Bundle-SymbolicName: AD2PetriNet_QVTO
+Bundle-Version: 1.0.0
+Bundle-Vendor: 

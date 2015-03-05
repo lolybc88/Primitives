@@ -1,0 +1,23 @@
+modeltype Clazz  uses classmm('http://classmm');
+modeltype Rel uses relationalmm('http://relationalmm');	
+
+transformation Case6(in clazz : Clazz, out Rel);
+
+
+main() {
+	clazz.objects()[Clazz::Class]-> map rule1();
+	clazz.objects()[Clazz::Attribute]-> map rule2();
+}
+
+
+
+mapping Clazz::Class::rule1() :  Rel::Table when {not self.isAbstract}
+{
+	name := self.name;
+	col := self.att.late  resolveIn(Clazz::Attribute::rule2, Rel::Column);
+}
+
+mapping Clazz::Attribute::rule2() :  Rel::Column
+{
+	name := self.name
+}

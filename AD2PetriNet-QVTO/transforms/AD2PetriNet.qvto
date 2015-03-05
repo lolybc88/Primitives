@@ -1,0 +1,55 @@
+modeltype AD uses activitydiagram('http://activitydiagram/1.0');
+modeltype PetriNet uses petrinet('http://petrinet/1.0');
+
+transformation AD2PetriNet(in source:AD, out target:PetriNet);
+
+main() {
+	source.objects()[AD::ActionNode]->map ActionNodeMapping();
+	source.objects()[AD::ActivityEdge]->map ActivityEdgeMapping();
+}
+
+mapping AD::ActionNode::ActionNodeMapping() : t1 : PetriNet::Transition, a1 : PetriNet::Arc, p : PetriNet::Place, a2 : PetriNet::Arc, t2 : PetriNet::Transition {
+	object t1 : PetriNet::Transition {
+		name := self.name + "-actionEntry";
+--		net := ...
+	};
+	object a1 : PetriNet::Arc {
+		transition := t1;
+		place := p;
+		toPlace := true;
+--		net := ...
+	};
+	object p : PetriNet::Place {
+		name := self.name;
+--		net := ...
+	};
+	object a2 : PetriNet::Arc {
+		transition := t2;
+		place := p;
+		toPlace := false;
+--		net := ...
+	};
+	object t2 : PetriNet::Transition {
+		name := self.name + "-actionExit";
+--		net := ...
+	};
+}
+
+mapping AD::ActivityEdge::ActivityEdgeMapping() : a1:PetriNet::Arc, p:PetriNet::Place, a2:PetriNet::Arc {
+	object a1 : PetriNet::Arc {
+		transition := self.source.late resolve();
+		place := p;
+		toPlace := true;
+--		net := ...
+	};
+	object p : PetriNet::Place {
+		name := self.name;
+--		net := ...
+	};
+	object a2 : PetriNet::Arc {
+		transition := ;
+		place := p;
+		toPlace := false;
+--		net := ...
+	};
+}

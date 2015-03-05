@@ -1,0 +1,16 @@
+modeltype Clazz  uses classmm('http://classmm');
+modeltype Rel uses relationalmm('http://relationalmm');	
+
+transformation Case1(in clazz : Clazz, out Rel);
+
+
+main() {
+	clazz.objects()[Clazz::Class]-> map rule1();
+}
+
+
+mapping Clazz::Class::rule1() :  Rel::Table 
+{
+	name := self.name
+}
+

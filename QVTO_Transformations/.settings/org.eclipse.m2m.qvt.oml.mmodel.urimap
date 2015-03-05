@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uriMap:MappingContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:uriMap="http:///www.eclipse.org/m2m/qvt/oml/MModelUriMap/1.0.0">
+  <mapping sourceURI="http://classmm" targetURI="platform:/resource/QVTO_Transformations/class2relational/class.ecore"/>
+  <mapping sourceURI="http://relationalmm" targetURI="platform:/resource/QVTO_Transformations/class2relational/relational.ecore"/>
+  <mapping sourceURI="http://mapping/1.0" targetURI="platform:/resource/QVTO_Transformations/matchingMM_case/Mapping.ecore"/>
+  <mapping sourceURI="org.amma.dsl.jdt.core" targetURI="platform:/resource/QVTO_Transformations/javaQuery_case/JDTAST.ecore"/>
+  <mapping sourceURI="org.amma.view" targetURI="platform:/resource/QVTO_Transformations/javaQuery_case/View.ecore"/>
+</uriMap:MappingContainer>

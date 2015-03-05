@@ -1,0 +1,29 @@
+modeltype Clazz  uses classmm('http://classmm');
+modeltype Rel uses relationalmm('http://relationalmm');	
+
+transformation Case15(in clazz : Clazz, out Rel);
+
+query Clazz::Class::check() : Boolean = 
+	self.att -> notEmpty() and not self.isAbstract;
+
+query Clazz::Attribute::check() : Boolean = 
+	not self.owner.isAbstract;
+	
+
+main() {
+	clazz.objects()[Clazz::Class]-> map rule1();
+	clazz.objects()[Clazz::Attribute]-> map rule2();
+}
+
+
+
+mapping Clazz::Class::rule1() :  Rel::Table when { self.check() }
+{
+	name := self.name;
+	col := self.att.late  resolveIn(Clazz::Attribute::rule2, Rel::Column);
+}
+
+mapping Clazz::Attribute::rule2() :  Rel::Column when { self.check() }
+{
+	name := self.name;
+}

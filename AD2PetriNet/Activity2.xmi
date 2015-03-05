@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ASCII"?>
+<activitydiagram:Activity
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:activitydiagram="http://activitydiagram/1.0"
+    xsi:schemaLocation="http://activitydiagram/1.0 /AD2PetriNet/ActivityDiagram.ecore">
+  <contains
+      xsi:type="activitydiagram:InitialNode"
+      name="initial"/>
+  <contains
+      xsi:type="activitydiagram:ActivityEdge"
+      name="initial-to-action1"
+      target="//@contains.2"/>
+  <contains
+      xsi:type="activitydiagram:ActionNode"
+      name="action1"
+      sedges="//@contains.3"
+      tedges="//@contains.1"/>
+  <contains
+      xsi:type="activitydiagram:ActivityEdge"
+      name="action1-to-final"
+      source="//@contains.2"/>
+  <contains
+      xsi:type="activitydiagram:ActivityFinalNode"
+      name="final"/>
+  <contains
+      xsi:type="activitydiagram:ActivityEdge"
+      name="isolated"/>
+</activitydiagram:Activity>
